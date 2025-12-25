@@ -6,19 +6,18 @@
 composer require pordaksergey/rr-symfony-centrifugo
 ```
 ## Usage
-1.
-add centrifugo endpoint to .env
-```
-CENTRIFUGO=http://centrifugo:8000
-```
-2. enable grpc plugin to .rr
+1. Add centrifugo endpoint to .env
+   ```
+   CENTRIFUGO=http://centrifugo:8000
+   ```
+2. Enable grpc plugin to .rr
    ```
    grpc:
      listen: tcp://0.0.0.0:30000
      proto:
        - vendor/rr-symfony-centrifugo/proto/centrifugo.proto
    ```
-3. exsample centrifugo config
+3. Exsample centrifugo config
    ```
    {
    "admin": true,

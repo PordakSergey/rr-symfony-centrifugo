@@ -12,6 +12,7 @@
   "require": {
     "php": "^8.4",
     "symfony/config": "^6.4 || ^7.0 || ^8.0",
+    "symfony/http-client": "^6.4 || ^7.0 || ^8.0",
     "symfony/framework-bundle": "^6.4 || ^7.0 || ^8.0",
     "spiral/roadrunner-grpc": "^3.5.2",
     "google/protobuf": "^4.33"

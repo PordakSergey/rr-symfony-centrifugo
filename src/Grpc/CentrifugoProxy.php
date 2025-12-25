@@ -22,9 +22,16 @@ use GRPC\Centrifugo\SubRefreshResponse;
 use GRPC\Centrifugo\SubscribeRequest;
 use GRPC\Centrifugo\SubscribeResponse;
 use Spiral\RoadRunner\GRPC\ContextInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CentrifugoProxy implements CentrifugoProxyInterface
 {
+    public function __construct(
+        protected EventDispatcherInterface $eventDispatcher,
+    )
+    {
+    }
+
     public function Connect(ContextInterface $ctx, ConnectRequest $in): ConnectResponse
     {
         return new ConnectResponse([
