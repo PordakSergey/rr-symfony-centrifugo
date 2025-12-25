@@ -3,18 +3,25 @@
 namespace Rr\Bundle\Centrifugo\Services;
 
 use Rr\Bundle\Centrifugo\Contracts\Services\CentrifugoApiServiceInterface;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Rr\Bundle\Centrifugo\Enums\CentrifugoEndpoint;
+use Rr\Bundle\Centrifugo\Http\CentrifugoHttpClient;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class CentrifugoApiService implements CentrifugoApiServiceInterface
 {
     public function __construct(
-        protected HttpClientInterface $httpClient,
+        protected CentrifugoHttpClient $centrifugo,
     )
     {
     }
 
-    public function publish() : void
+    /**
+     * @param array $data
+     * @return void
+     * @throws TransportExceptionInterface
+     */
+    public function publish(array $data) : void
     {
-
+        $this->centrifugo->sendRequest(CentrifugoEndpoint::PUBLISH->value, $data);
     }
 }
