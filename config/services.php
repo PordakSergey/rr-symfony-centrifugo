@@ -11,6 +11,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 return static function (ContainerConfigurator $container) {
     $services = $container->services();
+    $services->defaults()->autowire()->autoconfigure();
 
     $services->set(CentrifugoProxy::class);
 
