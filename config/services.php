@@ -15,6 +15,9 @@ return static function (ContainerConfigurator $container) {
 
     $services->set(CentrifugoProxy::class);
 
+    $services->set(CentrifugoApiServiceFactory::class);
+    $services->set(CentrifugoHttpClientFactory::class);
+
     $services->set(CentrifugoHttpClientInterface::class)
         ->share(false)
         ->factory([service(CentrifugoHttpClientFactory::class), 'fromEnvironment'])
