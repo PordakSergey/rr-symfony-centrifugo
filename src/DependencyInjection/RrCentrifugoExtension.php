@@ -7,9 +7,8 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 
-class CentrifugoExtension extends Extension
+class RrCentrifugoExtension extends Extension
 {
-
     /**
      * @param array $configs
      * @param ContainerBuilder $container
