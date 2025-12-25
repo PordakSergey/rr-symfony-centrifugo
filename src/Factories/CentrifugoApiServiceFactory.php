@@ -12,7 +12,7 @@ class CentrifugoApiServiceFactory
      * @param CentrifugoHttpClient $httpClient
      * @return CentrifugoApiServiceInterface
      */
-    public function fromEnvironment(CentrifugoHttpClient $httpClient) : CentrifugoApiServiceInterface
+    public function make(CentrifugoHttpClient $httpClient) : CentrifugoApiServiceInterface
     {
         return new CentrifugoApiService($httpClient);
     }

@@ -17,14 +17,14 @@ return static function (ContainerConfigurator $container) {
 
     $services->set(CentrifugoHttpClientInterface::class)
         ->share(false)
-        ->factory([CentrifugoHttpClientFactory::class, 'fromEnvironment'])
+        ->factory([service(CentrifugoHttpClientFactory::class), 'fromEnvironment'])
         ->args([
             service(HttpClientInterface::class),
         ]);
 
     $services->set(CentrifugoApiServiceInterface::class)
         ->share()
-        ->factory([CentrifugoApiServiceFactory::class, 'fromEnvironment'])
+        ->factory([service(CentrifugoApiServiceFactory::class), 'make'])
         ->args([
             service(CentrifugoHttpClientInterface::class),
         ]);
