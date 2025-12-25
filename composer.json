@@ -3,6 +3,8 @@
   "description": "Symfony roadrunner grpc centrifugo",
   "license": "MIT",
   "type": "symfony-bundle",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "authors": [
     {
       "name": "yalop",
