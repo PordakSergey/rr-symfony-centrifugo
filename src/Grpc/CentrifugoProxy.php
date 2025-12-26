@@ -21,6 +21,7 @@ use GRPC\Centrifugo\SubRefreshRequest;
 use GRPC\Centrifugo\SubRefreshResponse;
 use GRPC\Centrifugo\SubscribeRequest;
 use GRPC\Centrifugo\SubscribeResponse;
+use Psr\Log\LoggerInterface;
 use Rr\Bundle\Centrifugo\Event\Centrifugo\ConnectEvent;
 use Rr\Bundle\Centrifugo\Event\Centrifugo\SubscribeEvent;
 use Spiral\RoadRunner\GRPC\ContextInterface;
@@ -30,6 +31,7 @@ class CentrifugoProxy implements CentrifugoProxyInterface
 {
     public function __construct(
         protected EventDispatcherInterface $eventDispatcher,
+        protected LoggerInterface $logger,
     )
     {
     }
@@ -42,6 +44,7 @@ class CentrifugoProxy implements CentrifugoProxyInterface
     public function Connect(ContextInterface $ctx, ConnectRequest $in): ConnectResponse
     {
         $event = $this->eventDispatcher->dispatch(new ConnectEvent($in));
+        $this->logger->debug(sprintf('Centrifugo: Connect call. Request: %s', $event->getRequest()->serializeToString()));
         return $event->getResponse() ?? new ConnectResponse([
             'allowed' => true,
             'expire_at' => time() + 3600,
@@ -67,6 +70,7 @@ class CentrifugoProxy implements CentrifugoProxyInterface
     public function Subscribe(ContextInterface $ctx, SubscribeRequest $in): SubscribeResponse
     {
         $event = $this->eventDispatcher->dispatch(new SubscribeEvent($in));
+        $this->logger->debug(sprintf('Centrifugo: Subscribe call. Request: %s', $event->getRequest()->serializeToString()));
         return $event->getResponse() ?? new SubscribeResponse([]);
     }
 
