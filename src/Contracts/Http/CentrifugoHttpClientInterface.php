@@ -6,5 +6,5 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 interface CentrifugoHttpClientInterface
 {
-    public function sendRequest(string $method, array $data): ResponseInterface;
+    public function sendRequest(string $method, string $requestBody): ResponseInterface;
 }

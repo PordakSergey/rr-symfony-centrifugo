@@ -16,8 +16,8 @@ class CentrifugoHttpClient implements CentrifugoHttpClientInterface
      * @param HttpClientInterface $httpClient
      */
     public function __construct(
-        protected string $url,
-        protected string $secretToken,
+        protected string              $url,
+        protected string              $secretToken,
         protected HttpClientInterface $httpClient,
     )
     {
@@ -25,17 +25,18 @@ class CentrifugoHttpClient implements CentrifugoHttpClientInterface
 
     /**
      * @param string $method
-     * @param array $data
+     * @param string $requestBody
      * @return ResponseInterface
      * @throws TransportExceptionInterface
      */
-    public function sendRequest(string $method, array $data): ResponseInterface
+    public function sendRequest(string $method, string $requestBody): ResponseInterface
     {
-        return $this->httpClient->request('POST', $this->url.$method, [
+        return $this->httpClient->request('POST', $this->url . $method, [
             'headers' => [
                 'X-API-Key' => $this->secretToken,
+                'Content-Type' => 'application/json',
             ],
-            'json' => $data,
+            'body' => $requestBody,
         ]);
     }
 }
