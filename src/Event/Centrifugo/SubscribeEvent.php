@@ -32,9 +32,9 @@ class SubscribeEvent extends Event implements CentrifugoEventInterface
     }
 
     /**
-     * @return SubscribeResponse
+     * @return SubscribeResponse|null
      */
-    public function getResponse(): SubscribeResponse
+    public function getResponse(): ?SubscribeResponse
     {
         return $this->response;
     }
