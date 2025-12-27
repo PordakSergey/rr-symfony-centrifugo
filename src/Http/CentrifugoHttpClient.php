@@ -25,18 +25,17 @@ class CentrifugoHttpClient implements CentrifugoHttpClientInterface
 
     /**
      * @param string $method
-     * @param string $requestBody
+     * @param array $requestBody
      * @return ResponseInterface
      * @throws TransportExceptionInterface
      */
-    public function sendRequest(string $method, string $requestBody): ResponseInterface
+    public function sendRequest(string $method, array $requestBody): ResponseInterface
     {
         return $this->httpClient->request('POST', $this->url . $method, [
             'headers' => [
                 'X-API-Key' => $this->secretToken,
-                'Content-Type' => 'application/json',
             ],
-            'body' => $requestBody,
+            'json' => $requestBody,
         ]);
     }
 }
